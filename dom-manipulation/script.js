@@ -1,38 +1,63 @@
-// Initial quotes
-const quotes = [
-  { text: "The only limit is your mind.", category: "Motivation" },
-  { text: "Stay hungry, stay foolish.", category: "Inspiration" },
-  { text: "Life is short, code more.", category: "Programming" }
+
+
+let quotes = JSON.parse(localStorage.getItem('quotes')) || [
+ { text: "Success is not final, failure is not fatal.", category: "Motivation" },
+ { text: "Happiness depends upon ourselves.", category: "Philosophy" },
+ { text: "Simplicity is the ultimate sophistication.", category: "Wisdom" }
 ];
 
-// Display a random quote
+
 function showRandomQuote() {
-  const randomIndex = Math.floor(Math.random() * quotes.length);
-  const quote = quotes[randomIndex];
-  document.getElementById("quoteDisplay").textContent = `"${quote.text}" — ${quote.category}`;
+ const quoteDisplay = document.getElementById('quoteDisplay');
+ const randomIndex = Math.floor(Math.random() * quotes.length);
+ const quote = quotes[randomIndex];
+
+
+ quoteDisplay.innerHTML = `
+   <p>${quote.text}</p>
+   <p>Category: ${quote.category}</p>
+ `;
 }
 
-// Add a new quote
+
+function createAddQuoteForm() {
+ 
 function addQuote() {
-  const text = document.getElementById("newQuoteText").value.trim();
-  const category = document.getElementById("newQuoteCategory").value.trim();
+ const quoteText = document.getElementById('newQuoteText').value;
+ const quoteCategory = document.getElementById('newQuoteCategory').value;
 
-  if (text === "" || category === "") {
-    alert("Please enter both a quote and a category.");
-    return;
-  }
 
-  quotes.push({ text, category });
+ if (quoteText.trim() === '' || quoteCategory.trim() === '') return;
 
-  // Optionally show the new quote
-  document.getElementById("quoteDisplay").textContent = `"${text}" — ${category}`;
 
-  // Clear input fields
-  document.getElementById("newQuoteText").value = "";
-  document.getElementById("newQuoteCategory").value = "";
+ const newQuote = {
+   text: quoteText,
+   category: quoteCategory
+ };
+
+
+  quotes.push(newQuote);
+
+
+  localStorage.setItem('quotes', JSON.stringify(quotes));
+
+
+  const quoteDisplay = document.getElementById('quoteDisplay');
+ quoteDisplay.innerHTML = '';
+
+
+ 
+ const quoteTextElem = document.createElement('p');
+ quoteTextElem.textContent = newQuote.text;
+
+
+ const quoteCategoryElem = document.createElement('p');
+ quoteCategoryElem.textContent = 'Category: ' + newQuote.category;
+
+
+ quoteDisplay.appendChild(quoteTextElem);
+ quoteDisplay.appendChild(quoteCategoryElem);
 }
 
-// Attach the event listener to the button after DOM loads
-document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("newQuote").addEventListener("click", showRandomQuote);
-});
+
+document.getElementById('newQuote').addEventListener('click', showRandomQuote);
