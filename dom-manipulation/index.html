@@ -8,17 +8,30 @@
 <body>
   <h1>Dynamic Quote Generator</h1>
 
-  <div id="quoteDisplay" style="margin-bottom: 20px; font-weight: bold;"></div>
+  <!-- Display area -->
+  <div id="quoteDisplay"></div>
 
+  <!-- Show random quote -->
   <button id="newQuote">Show New Quote</button>
 
+  <!-- Add new quote -->
   <div style="margin-top: 20px;">
     <input id="newQuoteText" type="text" placeholder="Enter a new quote" />
     <input id="newQuoteCategory" type="text" placeholder="Enter quote category" />
     <button onclick="addQuote()">Add Quote</button>
   </div>
 
-  <!-- Link your JavaScript -->
+  <!-- Export quotes to JSON -->
+  <div style="margin-top: 20px;">
+    <button onclick="exportToJsonFile()">Export Quotes</button>
+  </div>
+
+  <!-- Import quotes from JSON file -->
+  <div style="margin-top: 10px;">
+    <input type="file" id="importFile" accept=".json" onchange="importFromJsonFile(event)" />
+  </div>
+
+  <!-- Link to JavaScript file -->
   <script src="script.js"></script>
 </body>
 </html>
