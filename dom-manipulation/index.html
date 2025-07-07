@@ -4,34 +4,73 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Dynamic Quote Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+    h1 {
+      text-align: center;
+    }
+    #quoteDisplay {
+      border: 1px solid #ccc;
+      padding: 20px;
+      margin-bottom: 20px;
+      min-height: 80px;
+      background-color: #f9f9f9;
+    }
+    input, select, button {
+      padding: 8px;
+      margin: 5px 0;
+      width: 100%;
+      max-width: 400px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .flex-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+  </style>
 </head>
 <body>
+
   <h1>Dynamic Quote Generator</h1>
 
-  <!-- Display area -->
-  <div id="quoteDisplay"></div>
-
-  <!-- Show random quote -->
-  <button id="newQuote">Show New Quote</button>
-
-  <!-- Add new quote -->
-  <div style="margin-top: 20px;">
-    <input id="newQuoteText" type="text" placeholder="Enter a new quote" />
-    <input id="newQuoteCategory" type="text" placeholder="Enter quote category" />
-    <button onclick="addQuote()">Add Quote</button>
+  <div class="form-group">
+    <label for="categoryFilter"><strong>Filter by Category:</strong></label>
+    <select id="categoryFilter" onchange="filterQuotes()">
+      <option value="all">All Categories</option>
+    </select>
   </div>
 
-  <!-- Export quotes to JSON -->
-  <div style="margin-top: 20px;">
+  <div id="quoteDisplay">
+    <p>Select a category or click "Show New Quote"</p>
+  </div>
+
+  <div class="flex-buttons">
+    <button id="newQuote">Show New Quote</button>
     <button onclick="exportToJsonFile()">Export Quotes</button>
-  </div>
-
-  <!-- Import quotes from JSON file -->
-  <div style="margin-top: 10px;">
     <input type="file" id="importFile" accept=".json" onchange="importFromJsonFile(event)" />
   </div>
 
-  <!-- Link to JavaScript file -->
+  <hr>
+
+  <h2>Add a New Quote</h2>
+  <div class="form-group">
+    <input id="newQuoteText" type="text" placeholder="Enter a new quote" />
+  </div>
+  <div class="form-group">
+    <input id="newQuoteCategory" type="text" placeholder="Enter quote category" />
+  </div>
+  <div class="form-group">
+    <button onclick="addQuote()">Add Quote</button>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>
