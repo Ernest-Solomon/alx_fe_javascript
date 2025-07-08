@@ -4,34 +4,71 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Dynamic Quote Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f4f4f4;
+    }
+    h1 {
+      color: #333;
+    }
+    #quoteDisplay {
+      background: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      margin-bottom: 15px;
+    }
+    .form-group {
+      margin-bottom: 10px;
+    }
+    input, select, button {
+      padding: 10px;
+      margin-right: 5px;
+    }
+    #notification {
+      background-color: #dff0d8;
+      color: #3c763d;
+      padding: 10px;
+      margin-top: 10px;
+      display: none;
+      border: 1px solid #d6e9c6;
+      border-radius: 4px;
+    }
+  </style>
 </head>
 <body>
   <h1>Dynamic Quote Generator</h1>
 
-  <!-- Category Filter -->
-  <label for="categoryFilter">Filter by Category:</label>
-  <select id="categoryFilter">
-    <option value="all">All Categories</option>
-  </select>
-
   <!-- Quote Display -->
   <div id="quoteDisplay"></div>
 
-  <!-- Show New Quote -->
+  <!-- Category Filter -->
+  <div class="form-group">
+    <label for="categoryFilter">Filter by Category:</label>
+    <select id="categoryFilter">
+      <option value="all">All Categories</option>
+    </select>
+  </div>
+
+  <!-- Show Random Quote Button -->
   <button id="newQuote">Show New Quote</button>
 
-  <!-- Add New Quote -->
-  <div>
-    <input id="newQuoteText" type="text" placeholder="Enter a new quote" />
-    <input id="newQuoteCategory" type="text" placeholder="Enter quote category" />
+  <!-- Add New Quote Form -->
+  <div class="form-group">
+    <input type="text" id="newQuoteText" placeholder="Enter a new quote" />
+    <input type="text" id="newQuoteCategory" placeholder="Enter quote category" />
     <button onclick="addQuote()">Add Quote</button>
   </div>
 
-  <!-- Export and Import JSON -->
-  <div>
+  <!-- Import/Export -->
+  <div class="form-group">
     <button id="exportBtn">Export Quotes</button>
     <input type="file" id="importFile" accept=".json" />
   </div>
+
+  <!-- Notification Area -->
+  <div id="notification"></div>
 
   <script src="script.js"></script>
 </body>
